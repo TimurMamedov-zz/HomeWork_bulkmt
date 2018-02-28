@@ -5,6 +5,8 @@
 CommandsStorage::CommandsStorage(std::size_t bulkSize) : bulkSize_(bulkSize)
 {
     commandsVector.reserve(bulkSize_);
+    solvers.reserve(3);
+    threads.reserve(3);
     finish.store(false);
     auto autoSavingSolver1 = std::make_unique<SaveSolver>(file_queue, finish);
     auto autoSavingSolver2 = std::make_unique<SaveSolver>(file_queue, finish);
@@ -29,6 +31,15 @@ CommandsStorage::~CommandsStorage()
 
     for(auto& thread : threads)
         thread.join();
+
+    std::cout << "main поток - " << stringsCount << " строк/а/и, " << commandsCount << " команд/а/ы, "
+              << blocksCount << " блок/а/ов" << std::endl;
+    std::cout << "log поток - " << solvers[2]->getCommandsCount() << " команд/а/ы, "
+              << solvers[2]->getBlocksCount() << " блок/а/ов" << std::endl;
+    std::cout << "file1 поток - " << solvers[0]->getCommandsCount() << " команд/а/ы, "
+              << solvers[0]->getBlocksCount() << " блок/а/ов" << std::endl;
+    std::cout << "file2 поток - " << solvers[1]->getCommandsCount() << " команд/а/ы, "
+              << solvers[1]->getBlocksCount() << " блок/а/ов" << std::endl;
 }
 
 void CommandsStorage::addString(const std::string& str)
@@ -37,6 +48,8 @@ void CommandsStorage::addString(const std::string& str)
         addBracket(str);
     else
         addCommand(str);
+
+    stringsCount++;
 }
 
 void CommandsStorage::addCommand(const std::string& command)
@@ -53,9 +66,12 @@ void CommandsStorage::addCommand(const std::string& command)
 
 void CommandsStorage::queues_push()
 {
-    auto&& commandString = bulkCommandString();
-    file_queue.push(std::pair<std::string, std::chrono::system_clock::time_point>(commandString, firstBulkTime));
-    log_queue.push(std::move(commandString));
+    file_queue.push(std::pair<std::vector<std::string>, std::chrono::system_clock::time_point>(commandsVector, firstBulkTime));
+    log_queue.push(commandsVector);
+
+    commandsCount += commandsVector.size();
+    blocksCount++;
+
     commandsVector.clear();
 }
 
@@ -72,6 +88,7 @@ void CommandsStorage::addBracket(const std::string& bracket)
     if(bracket == "{")
     {
         forcing_push();
+
         bracketStack.push(bracket);
     }
     else if(bracket == "}")
@@ -82,21 +99,4 @@ void CommandsStorage::addBracket(const std::string& bracket)
 
         forcing_push();
     }
-}
-
-std::string CommandsStorage::bulkCommandString() const
-{
-    std::stringstream ss;
-    if(!commandsVector.empty())
-    {
-        ss << "bulk: ";
-        auto last = commandsVector.end();
-        last--;
-        for(auto it = commandsVector.begin(); it != last; it++)
-        {
-            ss << *it << ", ";
-        }
-        ss << *last;
-    }
-    return ss.str();
 }
