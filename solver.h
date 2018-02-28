@@ -4,18 +4,12 @@
 */
 #pragma once
 
-class CommandsStorage;
-
 class Solver
 {
 public:
-    explicit Solver(CommandsStorage& commStor) :commandStorage(commStor){}
+    Solver() = default;
 
     virtual void operator()() = 0;
     virtual ~Solver(){}
-
-protected:
-    CommandsStorage& commandStorage;
-    void print();
 };
 

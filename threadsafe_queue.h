@@ -31,6 +31,12 @@ public:
         queue.pop();
     }
 
+    bool empty() const
+    {
+        std::lock_guard<std::mutex> lk(mt);
+        return queue.empty();
+    }
+
 private:
     std::queue<T> queue;
     mutable std::mutex mt;

@@ -5,16 +5,30 @@
 CommandsStorage::CommandsStorage(std::size_t bulkSize) : bulkSize_(bulkSize)
 {
     commandsVector.reserve(bulkSize_);
-    autoSavingSolver = std::make_unique<SaveSolver>(*this);
-    forcingAutoSavingSolver = std::make_unique<ForcingSaveSolver>(*this);
+    finish.store(false);
+    auto autoSavingSolver1 = std::make_unique<SaveSolver>(file_queue, finish);
+    auto autoSavingSolver2 = std::make_unique<SaveSolver>(file_queue, finish);
+    auto autoPrintSolver = std::make_unique<PrintSolver>(log_queue, finish);
+    solvers.emplace_back(std::move(autoSavingSolver1));
+    solvers.emplace_back(std::move(autoSavingSolver2));
+    solvers.emplace_back(std::move(autoPrintSolver));
 
-    std::thread file1(std::ref(*autoSavingSolver));
-    file1.detach();
+    std::thread file1(std::ref(*solvers[0])),
+            file2(std::ref(*solvers[1])),
+            log(std::ref(*solvers[2]));
+
+    threads.emplace_back(std::move(file1));
+    threads.emplace_back(std::move(file2));
+    threads.emplace_back(std::move(log));
 }
 
 CommandsStorage::~CommandsStorage()
 {
-//    forcingAutoSavingSolver->solve();
+    forcing_push();
+    finish.store(true);
+
+    for(auto& thread : threads)
+        thread.join();
 }
 
 void CommandsStorage::addString(const std::string& str)
@@ -23,12 +37,7 @@ void CommandsStorage::addString(const std::string& str)
         addBracket(str);
     else
         addCommand(str);
-//    autoSavingSolver->solve();
 }
-
-std::size_t CommandsStorage::bracketSize() const { return bracketStack.size(); }
-std::size_t CommandsStorage::commandsSize() const { return commandsVector.size(); }
-std::size_t CommandsStorage::bulkSize() const { return bulkSize_; }
 
 void CommandsStorage::addCommand(const std::string& command)
 {
@@ -36,13 +45,33 @@ void CommandsStorage::addCommand(const std::string& command)
         firstBulkTime = std::chrono::system_clock::now();
 
     commandsVector.push_back(command);
+    if((commandsVector.size() >= bulkSize_) && bracketStack.empty())
+    {
+        queues_push();
+    }
+}
+
+void CommandsStorage::queues_push()
+{
+    auto&& commandString = bulkCommandString();
+    file_queue.push(std::pair<std::string, std::chrono::system_clock::time_point>(commandString, firstBulkTime));
+    log_queue.push(std::move(commandString));
+    commandsVector.clear();
+}
+
+void CommandsStorage::forcing_push()
+{
+    if(bracketStack.empty() && commandsVector.size())
+    {
+        queues_push();
+    }
 }
 
 void CommandsStorage::addBracket(const std::string& bracket)
 {
     if(bracket == "{")
     {
-//        forcingAutoSavingSolver->solve();
+        forcing_push();
         bracketStack.push(bracket);
     }
     else if(bracket == "}")
@@ -50,7 +79,8 @@ void CommandsStorage::addBracket(const std::string& bracket)
         if(!bracketStack.empty())
             if(bracketStack.top() == "{")
                 bracketStack.pop();
-//        forcingAutoSavingSolver->solve();
+
+        forcing_push();
     }
 }
 
@@ -69,14 +99,4 @@ std::string CommandsStorage::bulkCommandString() const
         ss << *last;
     }
     return ss.str();
-}
-
-const std::chrono::system_clock::time_point &CommandsStorage::getFirstBulkTime() const
-{
-    return firstBulkTime;
-}
-
-void CommandsStorage::clearCommandsVector()
-{
-    commandsVector.clear();
 }

@@ -14,7 +14,7 @@ find_package(Threads)
 configure_file(version.h.in version.h)
 
 set(HEADERS commands_storage.h threadsafe_queue.h solver.h solvers.h)
-set(SOURCES commands_storage.cpp solver.cpp solvers.cpp)
+set(SOURCES commands_storage.cpp solvers.cpp)
 
 add_executable(bulkmt ${HEADERS} ${SOURCES} main.cpp)
 

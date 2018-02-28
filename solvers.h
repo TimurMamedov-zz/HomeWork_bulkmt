@@ -2,20 +2,32 @@
 \file
 \brief
 */
-#pragma once
 
+#pragma once
+#include <atomic>
 #include "solver.h"
+#include "threadsafe_queue.h"
 
 class SaveSolver : public Solver
 {
 public:
-    explicit SaveSolver(CommandsStorage& commStor);
+    explicit SaveSolver(ThreadSave_Queue<std::pair<std::string, std::chrono::system_clock::time_point> >& queue_,
+                        std::atomic_bool& finish_);
     void operator()() override;
+
+private:
+    ThreadSave_Queue<std::pair<std::string, std::chrono::system_clock::time_point> >& queue;
+    std::atomic_bool& finish;
 };
 
-class ForcingSaveSolver : public Solver
+class PrintSolver : public Solver
 {
 public:
-    explicit ForcingSaveSolver(CommandsStorage& commStor);
+    explicit PrintSolver(ThreadSave_Queue<std::string>& queue_,
+                         std::atomic_bool& finish_);
     void operator()() override;
+
+private:
+    ThreadSave_Queue<std::string>& queue;
+    std::atomic_bool& finish;
 };

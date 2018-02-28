@@ -11,8 +11,11 @@
 #include <ctime>
 #include <sstream>
 #include <memory>
+#include <thread>
+#include <atomic>
 
 #include "solver.h"
+#include "threadsafe_queue.h"
 
 class CommandsStorage
 {
@@ -22,24 +25,22 @@ public:
 
     void addString(const std::string& str);
 
-    void clearCommandsVector();
-
-    std::size_t bracketSize() const;
-    std::size_t commandsSize() const;
-    std::size_t bulkSize() const;
-
     std::string bulkCommandString() const;
-
-    const std::chrono::system_clock::time_point& getFirstBulkTime() const;
 
 private:
     std::stack<std::string> bracketStack;
     std::vector<std::string> commandsVector;
     std::chrono::system_clock::time_point firstBulkTime;
     const std::size_t bulkSize_;
-    std::shared_ptr<Solver> autoSavingSolver;
-    std::shared_ptr<Solver> forcingAutoSavingSolver;
+    std::vector<std::thread> threads;
+    std::vector<std::unique_ptr<Solver> > solvers;
+    std::atomic_bool finish;
+
+    ThreadSave_Queue<std::pair<std::string, std::chrono::system_clock::time_point> > file_queue;
+    ThreadSave_Queue<std::string> log_queue;
 
     void addCommand(const std::string& command);
     void addBracket(const std::string& bracket);
+    void queues_push();
+    void forcing_push();
 };
