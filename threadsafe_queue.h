@@ -20,15 +20,21 @@ public:
     {
         std::lock_guard<std::mutex> lk(mt);
         queue.push(new_value);
-        data_cond.notify_one();
+//        data_cond.notify_one();
     }
 
-    void wait_and_pop(T& value)
+    bool try_pop(T& value)
     {
-        std::unique_lock<std::mutex> lk(mt);
-        data_cond.wait(lk, [this]{ return !queue.empty();});
-        value = queue.front();
-        queue.pop();
+        std::lock_guard<std::mutex> lk(mt);
+//        data_cond.wait(lk, [this]{ return !queue.empty();});
+        if(!queue.empty())
+        {
+            value = queue.front();
+            queue.pop();
+            return true;
+        }
+
+        return false;
     }
 
     bool empty() const
@@ -40,5 +46,5 @@ public:
 private:
     std::queue<T> queue;
     mutable std::mutex mt;
-    std::condition_variable data_cond;
+//    std::condition_variable data_cond;
 };

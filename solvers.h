@@ -12,7 +12,7 @@ class SaveSolver : public Solver
 public:
     explicit SaveSolver(ThreadSave_Queue<std::pair< std::vector<std::string>,
                         std::chrono::system_clock::time_point> >& queue_,
-                        std::atomic_bool& finish_);
+                        const std::atomic_bool &finish_);
     void operator()() override;
 
 private:
@@ -23,7 +23,7 @@ class PrintSolver : public Solver
 {
 public:
     explicit PrintSolver(ThreadSave_Queue<std::vector<std::string> >& queue_,
-                         std::atomic_bool& finish_);
+                         const std::atomic_bool& finish_);
     void operator()() override;
 
 private:

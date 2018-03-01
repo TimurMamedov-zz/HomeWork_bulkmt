@@ -32,14 +32,14 @@ CommandsStorage::~CommandsStorage()
     for(auto& thread : threads)
         thread.join();
 
-    std::cout << "main поток - " << stringsCount << " строк/а/и, " << commandsCount << " команд/а/ы, "
-              << blocksCount << " блок/а/ов" << std::endl;
-    std::cout << "log поток - " << solvers[2]->getCommandsCount() << " команд/а/ы, "
-              << solvers[2]->getBlocksCount() << " блок/а/ов" << std::endl;
-    std::cout << "file1 поток - " << solvers[0]->getCommandsCount() << " команд/а/ы, "
-              << solvers[0]->getBlocksCount() << " блок/а/ов" << std::endl;
-    std::cout << "file2 поток - " << solvers[1]->getCommandsCount() << " команд/а/ы, "
-              << solvers[1]->getBlocksCount() << " блок/а/ов" << std::endl;
+    std::cout << "main thread - " << stringsCount << " strings, " << commandsCount << " commands, "
+              << blocksCount << " blocks" << std::endl;
+    std::cout << "log thread - " << solvers[2]->getCommandsCount() << " commands, "
+              << solvers[2]->getBlocksCount() << " blocks" << std::endl;
+    std::cout << "file1 thread - " << solvers[0]->getCommandsCount() << " commands, "
+              << solvers[0]->getBlocksCount() << " blocks" << std::endl;
+    std::cout << "file2 thread - " << solvers[1]->getCommandsCount() << " commands, "
+              << solvers[1]->getBlocksCount() << " blocks";
 }
 
 void CommandsStorage::addString(const std::string& str)

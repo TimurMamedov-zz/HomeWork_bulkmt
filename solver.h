@@ -11,7 +11,8 @@
 class Solver
 {
 public:
-    Solver(std::atomic_bool& finish_): finish(finish_){}
+    Solver(const std::atomic_bool& finish_)
+        :finish(finish_) {}
 
     std::size_t getBlocksCount() { return blocksCount; }
     std::size_t getCommandsCount() { return commandsCount; }
@@ -20,7 +21,7 @@ public:
     virtual ~Solver(){}
 
 protected:
-    std::atomic_bool& finish;
+    const std::atomic_bool& finish;
 
     std::string bulkCommandString(const std::vector<std::string>& commandsVector) const
     {
