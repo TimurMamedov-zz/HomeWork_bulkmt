@@ -2,15 +2,18 @@
 #include "solvers.h"
 #include <thread>
 
-CommandsStorage::CommandsStorage(std::size_t bulkSize) : bulkSize_(bulkSize)
+CommandsStorage::CommandsStorage(std::size_t bulkSize)
+    : file_queue(cond_var_file, finish), log_queue(cond_var_log, finish), bulkSize_(bulkSize)
 {
     commandsVector.reserve(bulkSize_);
     solvers.reserve(3);
     threads.reserve(3);
     finish.store(false);
-    auto autoSavingSolver1 = std::make_unique<SaveSolver>(file_queue, finish);
-    auto autoSavingSolver2 = std::make_unique<SaveSolver>(file_queue, finish);
-    auto autoPrintSolver = std::make_unique<PrintSolver>(log_queue, finish);
+
+    auto autoSavingSolver1 = std::make_unique<SaveSolver>(file_queue);
+    auto autoSavingSolver2 = std::make_unique<SaveSolver>(file_queue);
+    auto autoPrintSolver = std::make_unique<PrintSolver>(log_queue);
+
     solvers.emplace_back(std::move(autoSavingSolver1));
     solvers.emplace_back(std::move(autoSavingSolver2));
     solvers.emplace_back(std::move(autoPrintSolver));
@@ -39,7 +42,7 @@ CommandsStorage::~CommandsStorage()
     std::cout << "file1 thread - " << solvers[0]->getCommandsCount() << " commands, "
               << solvers[0]->getBlocksCount() << " blocks" << std::endl;
     std::cout << "file2 thread - " << solvers[1]->getCommandsCount() << " commands, "
-              << solvers[1]->getBlocksCount() << " blocks";
+              << solvers[1]->getBlocksCount() << " blocks" << std::endl;
 }
 
 void CommandsStorage::addString(const std::string& str)
@@ -66,7 +69,8 @@ void CommandsStorage::addCommand(const std::string& command)
 
 void CommandsStorage::queues_push()
 {
-    file_queue.push(std::pair<std::vector<std::string>, std::chrono::system_clock::time_point>(commandsVector, firstBulkTime));
+    file_queue.push(std::pair<std::vector<std::string>,
+                    std::chrono::system_clock::time_point>(commandsVector, firstBulkTime));
     log_queue.push(commandsVector);
 
     commandsCount += commandsVector.size();

@@ -7,12 +7,12 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <condition_variable>
 
 class Solver
 {
 public:
-    Solver(const std::atomic_bool& finish_)
-        :finish(finish_) {}
+    Solver() = default;
 
     std::size_t getBlocksCount() { return blocksCount; }
     std::size_t getCommandsCount() { return commandsCount; }
@@ -21,8 +21,6 @@ public:
     virtual ~Solver(){}
 
 protected:
-    const std::atomic_bool& finish;
-
     std::string bulkCommandString(const std::vector<std::string>& commandsVector) const
     {
         std::stringstream ss;

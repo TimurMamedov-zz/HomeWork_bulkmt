@@ -2,24 +2,23 @@
 #include "solvers.h"
 #include "commands_storage.h"
 
-SaveSolver::SaveSolver(ThreadSave_Queue<std::pair<std::vector<std::string>, std::chrono::_V2::system_clock::time_point> > &queue_,
-                       const std::atomic_bool& finish_)
-    :Solver(finish_), queue(queue_)
+SaveSolver::SaveSolver(ThreadSave_Queue<std::pair<std::vector<std::string>,
+                       std::chrono::_V2::system_clock::time_point> > &queue_)
+    :queue(queue_)
 {
 }
 
-PrintSolver::PrintSolver(ThreadSave_Queue<std::vector<std::string> > &queue_,
-                         const std::atomic_bool& finish_)
-    :Solver(finish_), queue(queue_)
+PrintSolver::PrintSolver(ThreadSave_Queue<std::vector<std::string> > &queue_)
+    :queue(queue_)
 {
 }
 
 void SaveSolver::operator()()
 {
-    while(!queue.empty() || !finish)
+    while(true)
     {
         std::pair<std::vector<std::string>, std::chrono::system_clock::time_point> commandPair;
-        if(queue.try_pop(commandPair))
+        if(queue.wait_and_pop(commandPair))
         {
             std::ofstream file;
             std::stringstream ss;
@@ -31,19 +30,23 @@ void SaveSolver::operator()()
 
             increaseCounts(commandPair.first.size());
         }
+        else
+            break;
     }
 }
 
 void PrintSolver::operator()()
 {
-    while(!queue.empty() || !finish)
+    while(true)
     {
         std::vector<std::string> commandVector;
-        if(queue.try_pop(commandVector))
+        if(queue.wait_and_pop(commandVector))
         {
             std::cout << bulkCommandString(commandVector) << "\n";
 
             increaseCounts(commandVector.size());
         }
+        else
+            break;
     }
 }
