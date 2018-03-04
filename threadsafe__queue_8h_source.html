@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>bulkmt: Исходный файл threadsafe_queue.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">bulkmt
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">threadsafe_queue.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="threadsafe__queue_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &lt;queue&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;condition_variable&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classThreadSave__Queue.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classThreadSave__Queue.html#a4fc397ff7dd866808ba2aa7ac88b304f">   15</a></span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classThreadSave__Queue.html#a4fc397ff7dd866808ba2aa7ac88b304f">ThreadSave_Queue</a>(std::condition_variable&amp; data_cond_,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                              <span class="keyword">const</span> std::atomic_bool&amp; finish_)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        : data_cond(data_cond_), finish(finish_){}</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classThreadSave__Queue.html#a4fc397ff7dd866808ba2aa7ac88b304f">ThreadSave_Queue</a>(<span class="keyword">const</span> <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&amp; <a class="code" href="classThreadSave__Queue.html#ae7519c47bf5d620c695eed2bf8bbeb5f">operator =</a>(<span class="keyword">const</span> <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classThreadSave__Queue.html#a97ac6be9d721ae3ab337ea869c9a4aa0">~ThreadSave_Queue</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classThreadSave__Queue.html#a95e3405dd622ec2363dd4cc2c2ced669">   22</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classThreadSave__Queue.html#a95e3405dd622ec2363dd4cc2c2ced669">push</a>(T new_value)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        std::lock_guard&lt;std::mutex&gt; lk(mt);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        queue.push(new_value);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        data_cond.notify_all();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classThreadSave__Queue.html#ad587f0b587ff09b0efacd58019435403">   29</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classThreadSave__Queue.html#ad587f0b587ff09b0efacd58019435403">wait_and_pop</a>(T&amp; value)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::unique_lock&lt;std::mutex&gt; lk(mt);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        data_cond.wait(lk, [<span class="keyword">this</span>]{ <span class="keywordflow">return</span> (!queue.empty() || finish);});</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">if</span>(finish &amp;&amp; queue.empty())</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        value = queue.front();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        queue.pop();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classThreadSave__Queue.html#a653c76aa8168a21296e4eb4b902c76df">   40</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classThreadSave__Queue.html#a653c76aa8168a21296e4eb4b902c76df">empty</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        std::lock_guard&lt;std::mutex&gt; lk(mt);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> queue.empty();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::queue&lt;T&gt; queue;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">mutable</span> std::mutex mt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::condition_variable&amp; data_cond;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> std::atomic_bool&amp; finish;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="ttc" id="classThreadSave__Queue_html_a4fc397ff7dd866808ba2aa7ac88b304f"><div class="ttname"><a href="classThreadSave__Queue.html#a4fc397ff7dd866808ba2aa7ac88b304f">ThreadSave_Queue::ThreadSave_Queue</a></div><div class="ttdeci">ThreadSave_Queue(std::condition_variable &amp;data_cond_, const std::atomic_bool &amp;finish_)</div><div class="ttdef"><b>Definition:</b> <a href="threadsafe__queue_8h_source.html#l00015">threadsafe_queue.h:15</a></div></div>
+<div class="ttc" id="classThreadSave__Queue_html_a653c76aa8168a21296e4eb4b902c76df"><div class="ttname"><a href="classThreadSave__Queue.html#a653c76aa8168a21296e4eb4b902c76df">ThreadSave_Queue::empty</a></div><div class="ttdeci">bool empty() const </div><div class="ttdef"><b>Definition:</b> <a href="threadsafe__queue_8h_source.html#l00040">threadsafe_queue.h:40</a></div></div>
+<div class="ttc" id="classThreadSave__Queue_html_ad587f0b587ff09b0efacd58019435403"><div class="ttname"><a href="classThreadSave__Queue.html#ad587f0b587ff09b0efacd58019435403">ThreadSave_Queue::wait_and_pop</a></div><div class="ttdeci">bool wait_and_pop(T &amp;value)</div><div class="ttdef"><b>Definition:</b> <a href="threadsafe__queue_8h_source.html#l00029">threadsafe_queue.h:29</a></div></div>
+<div class="ttc" id="classThreadSave__Queue_html_ae7519c47bf5d620c695eed2bf8bbeb5f"><div class="ttname"><a href="classThreadSave__Queue.html#ae7519c47bf5d620c695eed2bf8bbeb5f">ThreadSave_Queue::operator=</a></div><div class="ttdeci">ThreadSave_Queue &amp; operator=(const ThreadSave_Queue &amp;)=delete</div></div>
+<div class="ttc" id="classThreadSave__Queue_html_a97ac6be9d721ae3ab337ea869c9a4aa0"><div class="ttname"><a href="classThreadSave__Queue.html#a97ac6be9d721ae3ab337ea869c9a4aa0">ThreadSave_Queue::~ThreadSave_Queue</a></div><div class="ttdeci">~ThreadSave_Queue()=default</div></div>
+<div class="ttc" id="classThreadSave__Queue_html"><div class="ttname"><a href="classThreadSave__Queue.html">ThreadSave_Queue</a></div><div class="ttdef"><b>Definition:</b> <a href="threadsafe__queue_8h_source.html#l00012">threadsafe_queue.h:12</a></div></div>
+<div class="ttc" id="classThreadSave__Queue_html_a95e3405dd622ec2363dd4cc2c2ced669"><div class="ttname"><a href="classThreadSave__Queue.html#a95e3405dd622ec2363dd4cc2c2ced669">ThreadSave_Queue::push</a></div><div class="ttdeci">void push(T new_value)</div><div class="ttdef"><b>Definition:</b> <a href="threadsafe__queue_8h_source.html#l00022">threadsafe_queue.h:22</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по bulkmt. Последние изменения: Вс 4 Мар 2018 19:05:09. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

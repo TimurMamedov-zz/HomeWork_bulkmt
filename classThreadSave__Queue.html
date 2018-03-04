@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>bulkmt: Шаблон класса ThreadSave_Queue&lt; T &gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">bulkmt
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="files.html"><span>Файлы</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="inherits.html"><span>Иерархия&#160;классов</span></a></li>
+      <li><a href="functions.html"><span>Члены&#160;классов</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classThreadSave__Queue-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Шаблон класса ThreadSave_Queue&lt; T &gt;</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="threadsafe__queue_8h_source.html">threadsafe_queue.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a4fc397ff7dd866808ba2aa7ac88b304f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThreadSave__Queue.html#a4fc397ff7dd866808ba2aa7ac88b304f">ThreadSave_Queue</a> (std::condition_variable &amp;data_cond_, const std::atomic_bool &amp;finish_)</td></tr>
+<tr class="separator:a4fc397ff7dd866808ba2aa7ac88b304f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f4c5ed835eaf7b8f1f2fbe95d0d5257"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThreadSave__Queue.html#a8f4c5ed835eaf7b8f1f2fbe95d0d5257">ThreadSave_Queue</a> (const <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a> &amp;)=delete</td></tr>
+<tr class="separator:a8f4c5ed835eaf7b8f1f2fbe95d0d5257"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7519c47bf5d620c695eed2bf8bbeb5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThreadSave__Queue.html#ae7519c47bf5d620c695eed2bf8bbeb5f">operator=</a> (const <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a> &amp;)=delete</td></tr>
+<tr class="separator:ae7519c47bf5d620c695eed2bf8bbeb5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97ac6be9d721ae3ab337ea869c9a4aa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThreadSave__Queue.html#a97ac6be9d721ae3ab337ea869c9a4aa0">~ThreadSave_Queue</a> ()=default</td></tr>
+<tr class="separator:a97ac6be9d721ae3ab337ea869c9a4aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95e3405dd622ec2363dd4cc2c2ced669"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThreadSave__Queue.html#a95e3405dd622ec2363dd4cc2c2ced669">push</a> (T new_value)</td></tr>
+<tr class="separator:a95e3405dd622ec2363dd4cc2c2ced669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad587f0b587ff09b0efacd58019435403"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThreadSave__Queue.html#ad587f0b587ff09b0efacd58019435403">wait_and_pop</a> (T &amp;value)</td></tr>
+<tr class="separator:ad587f0b587ff09b0efacd58019435403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a653c76aa8168a21296e4eb4b902c76df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThreadSave__Queue.html#a653c76aa8168a21296e4eb4b902c76df">empty</a> () const </td></tr>
+<tr class="separator:a653c76aa8168a21296e4eb4b902c76df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><h3>template&lt;typename T&gt;<br/>
+class ThreadSave_Queue&lt; T &gt;</h3>
+
+
+<p>См. определение в файле <a class="el" href="threadsafe__queue_8h_source.html">threadsafe_queue.h</a> строка <a class="el" href="threadsafe__queue_8h_source.html#l00012">12</a></p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a class="anchor" id="a4fc397ff7dd866808ba2aa7ac88b304f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt;::<a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::condition_variable &amp;&#160;</td>
+          <td class="paramname"><em>data_cond_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::atomic_bool &amp;&#160;</td>
+          <td class="paramname"><em>finish_</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>См. определение в файле <a class="el" href="threadsafe__queue_8h_source.html">threadsafe_queue.h</a> строка <a class="el" href="threadsafe__queue_8h_source.html#l00015">15</a></p>
+
+</div>
+</div>
+<a class="anchor" id="a8f4c5ed835eaf7b8f1f2fbe95d0d5257"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt;::<a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a97ac6be9d721ae3ab337ea869c9a4aa0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt;::~<a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a class="anchor" id="a653c76aa8168a21296e4eb4b902c76df"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt;::empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>См. определение в файле <a class="el" href="threadsafe__queue_8h_source.html">threadsafe_queue.h</a> строка <a class="el" href="threadsafe__queue_8h_source.html#l00040">40</a></p>
+
+</div>
+</div>
+<a class="anchor" id="ae7519c47bf5d620c695eed2bf8bbeb5f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&amp; <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a95e3405dd622ec2363dd4cc2c2ced669"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>new_value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>См. определение в файле <a class="el" href="threadsafe__queue_8h_source.html">threadsafe_queue.h</a> строка <a class="el" href="threadsafe__queue_8h_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a class="anchor" id="ad587f0b587ff09b0efacd58019435403"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt; T &gt;::wait_and_pop </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>См. определение в файле <a class="el" href="threadsafe__queue_8h_source.html">threadsafe_queue.h</a> строка <a class="el" href="threadsafe__queue_8h_source.html#l00029">29</a></p>
+
+<p>Используется в <a class="el" href="solvers_8cpp_source.html#l00016">SaveSolver::operator()()</a> и <a class="el" href="solvers_8cpp_source.html#l00038">PrintSolver::operator()()</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li><a class="el" href="threadsafe__queue_8h_source.html">threadsafe_queue.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по bulkmt. Последние изменения: Вс 4 Мар 2018 19:05:09. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

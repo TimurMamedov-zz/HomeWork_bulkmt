@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>bulkmt: Исходный файл solvers.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">bulkmt
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">solvers.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="solvers_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="solver_8h.html">solver.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="threadsafe__queue_8h.html">threadsafe_queue.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classSaveSolver.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSaveSolver.html">SaveSolver</a> : <span class="keyword">public</span> <a class="code" href="classSolver.html">Solver</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classSaveSolver.html#a120a71c6c35399761c383b13303318eb">SaveSolver</a>(<a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt;std::pair&lt; std::vector&lt;std::string&gt;,</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                        std::chrono::system_clock::time_point&gt; &gt;&amp; queue_);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSaveSolver.html#acfa6c9835311532815a7577c86d2bd94">operator()</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue&lt;std::pair&lt;std::vector&lt;std::string&gt;</a>, std::chrono::system_clock::time_point&gt; &gt;&amp; queue;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classPrintSolver.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPrintSolver.html">PrintSolver</a> : <span class="keyword">public</span> <a class="code" href="classSolver.html">Solver</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classPrintSolver.html#abcc5a0ed2f4ac94ff4a15951dc258e63">PrintSolver</a>(<a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue</a>&lt;std::vector&lt;std::string&gt; &gt;&amp; queue_);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classPrintSolver.html#aedd97d33f6e7086be3289ed9e50b6351">operator()</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue&lt;std::vector&lt;std::string&gt;</a> &gt;&amp; queue;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
+<div class="ttc" id="classPrintSolver_html_aedd97d33f6e7086be3289ed9e50b6351"><div class="ttname"><a href="classPrintSolver.html#aedd97d33f6e7086be3289ed9e50b6351">PrintSolver::operator()</a></div><div class="ttdeci">void operator()() override</div><div class="ttdef"><b>Definition:</b> <a href="solvers_8cpp_source.html#l00038">solvers.cpp:38</a></div></div>
+<div class="ttc" id="threadsafe__queue_8h_html"><div class="ttname"><a href="threadsafe__queue_8h.html">threadsafe_queue.h</a></div></div>
+<div class="ttc" id="classSaveSolver_html_acfa6c9835311532815a7577c86d2bd94"><div class="ttname"><a href="classSaveSolver.html#acfa6c9835311532815a7577c86d2bd94">SaveSolver::operator()</a></div><div class="ttdeci">void operator()() override</div><div class="ttdef"><b>Definition:</b> <a href="solvers_8cpp_source.html#l00016">solvers.cpp:16</a></div></div>
+<div class="ttc" id="classSaveSolver_html_a120a71c6c35399761c383b13303318eb"><div class="ttname"><a href="classSaveSolver.html#a120a71c6c35399761c383b13303318eb">SaveSolver::SaveSolver</a></div><div class="ttdeci">SaveSolver(ThreadSave_Queue&lt; std::pair&lt; std::vector&lt; std::string &gt;, std::chrono::system_clock::time_point &gt; &gt; &amp;queue_)</div><div class="ttdef"><b>Definition:</b> <a href="solvers_8cpp_source.html#l00005">solvers.cpp:5</a></div></div>
+<div class="ttc" id="classThreadSave__Queue_html"><div class="ttname"><a href="classThreadSave__Queue.html">ThreadSave_Queue</a></div><div class="ttdef"><b>Definition:</b> <a href="threadsafe__queue_8h_source.html#l00012">threadsafe_queue.h:12</a></div></div>
+<div class="ttc" id="solver_8h_html"><div class="ttname"><a href="solver_8h.html">solver.h</a></div></div>
+<div class="ttc" id="classSolver_html"><div class="ttname"><a href="classSolver.html">Solver</a></div><div class="ttdef"><b>Definition:</b> <a href="solver_8h_source.html#l00012">solver.h:12</a></div></div>
+<div class="ttc" id="classPrintSolver_html"><div class="ttname"><a href="classPrintSolver.html">PrintSolver</a></div><div class="ttdef"><b>Definition:</b> <a href="solvers_8h_source.html#l00021">solvers.h:21</a></div></div>
+<div class="ttc" id="classPrintSolver_html_abcc5a0ed2f4ac94ff4a15951dc258e63"><div class="ttname"><a href="classPrintSolver.html#abcc5a0ed2f4ac94ff4a15951dc258e63">PrintSolver::PrintSolver</a></div><div class="ttdeci">PrintSolver(ThreadSave_Queue&lt; std::vector&lt; std::string &gt; &gt; &amp;queue_)</div><div class="ttdef"><b>Definition:</b> <a href="solvers_8cpp_source.html#l00011">solvers.cpp:11</a></div></div>
+<div class="ttc" id="classSaveSolver_html"><div class="ttname"><a href="classSaveSolver.html">SaveSolver</a></div><div class="ttdef"><b>Definition:</b> <a href="solvers_8h_source.html#l00010">solvers.h:10</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Документация по bulkmt. Последние изменения: Вс 4 Мар 2018 19:05:09. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>
