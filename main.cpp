@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
         {
             cmdStorage.addString(line);
         }
+        cmdStorage.forcing_push();
     }
     catch(const std::exception &e)
     {

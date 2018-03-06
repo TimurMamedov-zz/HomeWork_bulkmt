@@ -25,6 +25,7 @@ public:
     ~CommandsStorage();
 
     void addString(const std::string& str);
+    void forcing_push();
 
 private:
     std::stack<std::string> bracketStack;
@@ -49,5 +50,4 @@ private:
     void addCommand(const std::string& command);
     void addBracket(const std::string& bracket);
     void queues_push();
-    void forcing_push();
 };

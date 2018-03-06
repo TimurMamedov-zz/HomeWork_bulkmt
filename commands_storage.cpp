@@ -29,8 +29,9 @@ CommandsStorage::CommandsStorage(std::size_t bulkSize)
 
 CommandsStorage::~CommandsStorage()
 {
-    forcing_push();
     finish.store(true);
+    cond_var_file.notify_all();
+    cond_var_log.notify_all();
 
     for(auto& thread : threads)
         thread.join();
