@@ -70,43 +70,44 @@
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classCommandsStorage.html#ab9584a2512ce2bd53d70fa07f7eb5dd5">~CommandsStorage</a>();</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandsStorage.html#a8256f1436dacdad169ab7c85c3277013">addString</a>(<span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::stack&lt;std::string&gt; bracketStack;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::vector&lt;std::string&gt; commandsVector;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    std::chrono::system_clock::time_point firstBulkTime;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">const</span> std::size_t bulkSize_;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::vector&lt;std::thread&gt; threads;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::vector&lt;std::unique_ptr&lt;Solver&gt; &gt; solvers;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::atomic_bool finish;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::condition_variable cond_var_log;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    std::condition_variable cond_var_file;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandsStorage.html#a346521b1671f1432ee0c3b84645bcefc">forcing_push</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::stack&lt;std::string&gt; bracketStack;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    std::vector&lt;std::string&gt; commandsVector;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::chrono::system_clock::time_point firstBulkTime;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">const</span> std::size_t bulkSize_;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::vector&lt;std::thread&gt; threads;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::vector&lt;std::unique_ptr&lt;Solver&gt; &gt; solvers;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::atomic_bool finish;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    std::condition_variable cond_var_log;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::condition_variable cond_var_file;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    std::size_t commandsCount = 0;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::size_t blocksCount = 0;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::size_t stringsCount = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue&lt;std::pair&lt; std::vector&lt;std::string&gt;</a>,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::chrono::system_clock::time_point&gt; &gt; file_queue;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue&lt;std::vector&lt;std::string&gt;</a> &gt; log_queue;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> addCommand(<span class="keyword">const</span> std::string&amp; command);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> addBracket(<span class="keyword">const</span> std::string&amp; bracket);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> queues_push();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> forcing_push();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::size_t commandsCount = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::size_t blocksCount = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::size_t stringsCount = 0;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue&lt;std::pair&lt; std::vector&lt;std::string&gt;</a>,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::chrono::system_clock::time_point&gt; &gt; file_queue;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classThreadSave__Queue.html">ThreadSave_Queue&lt;std::vector&lt;std::string&gt;</a> &gt; log_queue;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> addCommand(<span class="keyword">const</span> std::string&amp; command);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> addBracket(<span class="keyword">const</span> std::string&amp; bracket);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> queues_push();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
 <div class="ttc" id="classCommandsStorage_html"><div class="ttname"><a href="classCommandsStorage.html">CommandsStorage</a></div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8h_source.html#l00021">commands_storage.h:21</a></div></div>
 <div class="ttc" id="threadsafe__queue_8h_html"><div class="ttname"><a href="threadsafe__queue_8h.html">threadsafe_queue.h</a></div></div>
 <div class="ttc" id="classThreadSave__Queue_html"><div class="ttname"><a href="classThreadSave__Queue.html">ThreadSave_Queue</a></div><div class="ttdef"><b>Definition:</b> <a href="threadsafe__queue_8h_source.html#l00012">threadsafe_queue.h:12</a></div></div>
 <div class="ttc" id="solver_8h_html"><div class="ttname"><a href="solver_8h.html">solver.h</a></div></div>
 <div class="ttc" id="classCommandsStorage_html_a778cec9cb7bb7c98e79fad347992b4da"><div class="ttname"><a href="classCommandsStorage.html#a778cec9cb7bb7c98e79fad347992b4da">CommandsStorage::CommandsStorage</a></div><div class="ttdeci">CommandsStorage(std::size_t bulkSize)</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00005">commands_storage.cpp:5</a></div></div>
-<div class="ttc" id="classCommandsStorage_html_a8256f1436dacdad169ab7c85c3277013"><div class="ttname"><a href="classCommandsStorage.html#a8256f1436dacdad169ab7c85c3277013">CommandsStorage::addString</a></div><div class="ttdeci">void addString(const std::string &amp;str)</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00048">commands_storage.cpp:48</a></div></div>
+<div class="ttc" id="classCommandsStorage_html_a346521b1671f1432ee0c3b84645bcefc"><div class="ttname"><a href="classCommandsStorage.html#a346521b1671f1432ee0c3b84645bcefc">CommandsStorage::forcing_push</a></div><div class="ttdeci">void forcing_push()</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00083">commands_storage.cpp:83</a></div></div>
+<div class="ttc" id="classCommandsStorage_html_a8256f1436dacdad169ab7c85c3277013"><div class="ttname"><a href="classCommandsStorage.html#a8256f1436dacdad169ab7c85c3277013">CommandsStorage::addString</a></div><div class="ttdeci">void addString(const std::string &amp;str)</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00049">commands_storage.cpp:49</a></div></div>
 <div class="ttc" id="classCommandsStorage_html_ab9584a2512ce2bd53d70fa07f7eb5dd5"><div class="ttname"><a href="classCommandsStorage.html#ab9584a2512ce2bd53d70fa07f7eb5dd5">CommandsStorage::~CommandsStorage</a></div><div class="ttdeci">~CommandsStorage()</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00030">commands_storage.cpp:30</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по bulkmt. Последние изменения: Вс 4 Мар 2018 19:05:09. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по bulkmt. Последние изменения: Вт 6 Мар 2018 08:34:20. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

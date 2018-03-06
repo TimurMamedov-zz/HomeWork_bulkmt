@@ -65,21 +65,23 @@
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            cmdStorage.<a class="code" href="classCommandsStorage.html#a8256f1436dacdad169ab7c85c3277013">addString</a>(line);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;e)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        cmdStorage.<a class="code" href="classCommandsStorage.html#a346521b1671f1432ee0c3b84645bcefc">forcing_push</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 <div class="ttc" id="commands__storage_8h_html"><div class="ttname"><a href="commands__storage_8h.html">commands_storage.h</a></div></div>
 <div class="ttc" id="classCommandsStorage_html"><div class="ttname"><a href="classCommandsStorage.html">CommandsStorage</a></div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8h_source.html#l00021">commands_storage.h:21</a></div></div>
-<div class="ttc" id="classCommandsStorage_html_a8256f1436dacdad169ab7c85c3277013"><div class="ttname"><a href="classCommandsStorage.html#a8256f1436dacdad169ab7c85c3277013">CommandsStorage::addString</a></div><div class="ttdeci">void addString(const std::string &amp;str)</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00048">commands_storage.cpp:48</a></div></div>
+<div class="ttc" id="classCommandsStorage_html_a346521b1671f1432ee0c3b84645bcefc"><div class="ttname"><a href="classCommandsStorage.html#a346521b1671f1432ee0c3b84645bcefc">CommandsStorage::forcing_push</a></div><div class="ttdeci">void forcing_push()</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00083">commands_storage.cpp:83</a></div></div>
+<div class="ttc" id="classCommandsStorage_html_a8256f1436dacdad169ab7c85c3277013"><div class="ttname"><a href="classCommandsStorage.html#a8256f1436dacdad169ab7c85c3277013">CommandsStorage::addString</a></div><div class="ttdeci">void addString(const std::string &amp;str)</div><div class="ttdef"><b>Definition:</b> <a href="commands__storage_8cpp_source.html#l00049">commands_storage.cpp:49</a></div></div>
 <div class="ttc" id="main_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00005">main.cpp:5</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Документация по bulkmt. Последние изменения: Вс 4 Мар 2018 19:05:09. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+Документация по bulkmt. Последние изменения: Вт 6 Мар 2018 08:34:20. Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
